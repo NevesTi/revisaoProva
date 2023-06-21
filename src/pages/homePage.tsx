@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, StatusBar, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
 import CountryEntity from '../entities/country-entity';
 
 
@@ -24,7 +24,7 @@ export default function HomePage() {
                         id: country.name.common,
                         name: country.name.common,
                         ptName: country.translations.por.common,
-                        flagUrl: country.flags.svg,
+                        flagUrl: country.flags.png,
                         population: country.population,
                     });
 
@@ -44,11 +44,19 @@ export default function HomePage() {
                 data={countries}
                 renderItem={(country) =>
 
+
+
                     <View style={styles.team_item}>
-                        <Image source={country.item.flagUrl} style={styles.shield} />
-                        <Text style={styles.team_name}>{country.item.name}</Text>
-                        <Text style={styles.number}>{country.item.ptName}</Text>
-                        <Text style={styles.number}>{country.item.population}</Text>
+                        <View>
+                            <Image source={{ uri: country.item.flagUrl }} style={styles.shield} />
+                        </View>
+                        <View style={styles.title_name}>
+
+                            <Text style={{fontSize:20, fontWeight:'700'}}>{country.item.name}</Text>
+                            <Text style={styles.number_name}>{country.item.ptName}</Text>
+                            <Text style={styles.number_population}>{country.item.population}</Text>
+                        </View>
+
 
                     </View>
 
@@ -64,46 +72,35 @@ export default function HomePage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#74f20d',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    title: {
-        width: '100%',
-        fontSize: 50,
-        fontWeight: '700',
-        marginTop: 50,
-        color: '#f4e807',
-        textAlign: 'left',
-        marginLeft: 32,
-        backgroundColor: 'blue',
-        elevation: 3,
-        borderRadius: 17
-    },
-    shield: {
-        width: 40,
-        height: 50,
-        flex: 2,
-        marginRight: 16
-    },
-    team_name: {
-        fontWeight: '500',
-        flex: 12,
-        textAlign: 'left',
-        fontSize: 30
-    },
+
     team_item: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginVertical: 8
+        flexDirection:'row',
+        marginBottom:16,
+
     },
-    number: {
-        flex: 2,
-        fontSize: 26,
-        color: '#116804'
+
+    shield: {
+        width: 100,
+        height: 100,
+        marginRight:16,
+    },
+
+    number_name: {
+
+    },
+    number_population: {
+
+    },
+    title_name:{
+        justifyContent:'center',
+        
     }
+
+
 });
 
 
